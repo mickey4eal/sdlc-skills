@@ -1,0 +1,9 @@
+{
+  "name": "sdlc",
+  "version": "0.1.0",
+  "description": "Gated SDLC workflows for a context-first engineering workspace — ticket analysis, impact analysis, bug fixes, features, refactors, reviews, releases, hotfixes and handovers, with approval gates and human-run builds.",
+  "author": { "name": "M.A.O." },
+  "repository": "https://github.com/mickey4eal/sdlc-skills",
+  "license": "UNLICENSED",
+  "keywords": ["sdlc", "workflow", "dotnet", "code-review", "bug-fix", "release"]
+}

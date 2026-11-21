@@ -1,0 +1,5 @@
+# Local machine files
+.claude/settings.local.json
+.env
+*.local.md
+scratch/

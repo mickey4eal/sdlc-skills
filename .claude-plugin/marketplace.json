@@ -1,0 +1,11 @@
+{
+  "name": "sdlc-skills",
+  "owner": { "name": "M.A.O." },
+  "plugins": [
+    {
+      "name": "sdlc",
+      "source": "./plugins/sdlc",
+      "description": "Gated SDLC workflows for a context-first engineering workspace."
+    }
+  ]
+}
