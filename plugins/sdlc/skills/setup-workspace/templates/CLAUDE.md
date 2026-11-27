@@ -40,7 +40,9 @@ Every session begins with these steps, in order, without being told:
 2. Read the repository `bootstrap.md` at
    `[workspace]\ai-context\repos\[repo-name]\bootstrap.md`.
 3. Invoke the relevant `sdlc:` skill(s) for the task at hand (see "Skill
-   library" below).
+   library" below) before investigating or writing anything — including
+   one-off or uncommitted scripts and tasks that already seem well defined.
+   Loading a skill at write-up skips its approval gates.
 4. Confirm current state and open decisions before doing anything else.
 5. If a task file exists at `[workspace]\tasks\[ticket-id]\`, read it.
 
@@ -61,6 +63,9 @@ Apply these in every session without being told:
 - Do not modify files outside the stated scope of the current task.
 - Do not add, remove, upgrade, or downgrade any dependency unless explicitly
   instructed.
+- Branches, commits, pushes and pull requests follow the "Working agreement"
+  in `workspace-settings.md`. Where it is missing or silent, the human does
+  all four and Claude only names the branch, lists changed files and drafts.
 - Do not run builds or tests unless explicitly instructed. The human runs all
   build and test commands and provides the output.
 - When build or test output is provided, interpret it, identify the root cause
@@ -127,7 +132,8 @@ Each repo's `bootstrap.md` lists only the skills specific to that repo under
 `sdlc:ticket-analysis`, `sdlc:impact-analysis`, `sdlc:code-review`,
 `sdlc:security-review`, `sdlc:test-authoring`, `sdlc:bug-fix`, `sdlc:spike`,
 `sdlc:raise-pr`, `sdlc:release`, `sdlc:hotfix`, `sdlc:incident-triage`,
-`sdlc:adr`, `sdlc:handover` — apply to every repo and are not repeated there.
+`sdlc:adr`, `sdlc:handover`, `sdlc:env-verification`, `sdlc:config-change` —
+apply to every repo and are not repeated there.
 
 Current skills:
 
@@ -151,6 +157,9 @@ Current skills:
   regression test.
 - `sdlc:code-review` — read-only review pass over a change before it merges.
 - `sdlc:test-authoring` — add or expand tests around existing code.
+- `sdlc:env-verification` — verify a delivered ticket in a deployed
+  environment: AC-to-code check, prerequisites, manual test plan,
+  human-reported results.
 - `sdlc:spike` — time-boxed investigation; produces findings, not production code.
 - `sdlc:ticket-analysis` — analyse a new ticket into a task folder: restated
   acceptance criteria, repos, risks, open questions, plan.
@@ -158,8 +167,12 @@ Current skills:
   changing, what breaks, and the safe rollout order.
 - `sdlc:setup-workspace` — scaffold a workspace from the plugin's templates
   and write `.claude/sdlc.md`.
-- `sdlc:raise-pr` — branch and scope checks, draft PR description, create on
-  approval.
+- `sdlc:config-change` — configuration-only change (parameter files, app
+  settings, pipeline variables): per-environment values, deploy route, side
+  effects, rollback by value, post-deploy check.
+- `sdlc:raise-pr` — branch and scope checks and a draft PR description; the
+  PR itself is raised as the settings' working agreement says (by default, by
+  the human).
 - `sdlc:release` — release scope, deployment order, release notes and environment
   checklist.
 - `sdlc:hotfix` — urgent production fix from the deployed baseline, merged back to

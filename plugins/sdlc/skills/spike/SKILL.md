@@ -38,8 +38,10 @@ If the investigation concludes that code should change, that is a *separate*
 session under the appropriate skill.
 
 ## Step 1 — Frame the question and success criteria
-Restate the question precisely and the criteria that will close it. Confirm the
-time box. Wait for approval before investigating — a mis-framed spike wastes the
+Restate the question precisely and the criteria that will close it. List the
+constraints that will rank the options: which risks or exposures must be closed
+and which may stay open. Confirm each one with the human rather than assuming
+it. Confirm the time box. Wait for approval before investigating — a mis-framed spike wastes the
 box.
 
 ## Step 2 — Investigate

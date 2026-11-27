@@ -65,14 +65,17 @@ For each approved case, in order:
 1. Describe the proposed test. Wait for approval.
 2. Write it.
 3. Human runs it. Confirm it passes (or, for a case that documents a known gap,
-   confirm it fails for the expected reason and record that gap).
+   confirm it fails for the expected reason and record that gap). A pending,
+   skipped or inconclusive result — e.g. a scenario with unbound steps — is a
+   failure, not a pass.
 
 Do not batch. One case, one run. Do not modify the code under test — if a test
 cannot pass without a code change, stop and record it under "Observations for
 later"; that is a defect, not a test task.
 
 ## Step 5 — Run the suite
-Human runs the full suite. Interpret the output. Ensure no existing test was
+Human runs the full suite. Interpret the output, and report any pending,
+skipped or inconclusive tests as failures. Ensure no existing test was
 destabilised by the additions.
 
 ## Step 6 — Completion summary

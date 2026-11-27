@@ -21,7 +21,12 @@ rules in `[workspace]\CLAUDE.md`. Best run in `Mode: analysis`.
 2. Read `[workspace]\ai-context\repos\[repo-name]\bootstrap.md` and
    `conventions.md` for the repo under review.
 3. If a ticket id is known, read `[workspace]\tasks\[ticket-id]\` if it
-   exists.
+   exists. If it holds a `ticket-snapshot.md`, re-fetch the ticket as in
+   `sdlc:ticket-analysis` Step 0 and report what changed since the snapshot.
+   Review against the current ticket, and flag changed acceptance criteria
+   before Step 1. If the re-fetch hits a sign-in page, ask the human to sign
+   in; continue against the snapshot only if they say so, and state that in
+   the Completion summary.
 
 ## Inputs required from the human
 - The review target: branch name, PR, diff, or file/path set.
@@ -33,7 +38,10 @@ Ask for any that are missing before Step 1.
 ## Step 1 — Establish scope and baseline
 State exactly what changed and what the change is meant to achieve. Read the
 diff and the surrounding code it touches. Do not review files outside the diff
-unless the change's correctness depends on them.
+unless the change's correctness depends on them. If the branch was moved to a
+newer base, list the base's commits that touch the changed files
+(`git log <old-base>..<new-base> -- <files>`) and check each one's changes
+survived and still hold; add a row for any that did not.
 
 | File | Nature of change | Intended effect |
 |---|---|---|
@@ -64,8 +72,13 @@ One row per finding, most severe first. Be specific and actionable.
 |---|---|---|---|
 
 Severity values: `blocker` (must fix before merge), `major` (should fix),
-`minor` (optional), `nit` (style/preference). If there are no findings, say so
-plainly — do not invent issues.
+`minor` (optional), `nit` (style/preference), `note` (matches the earlier
+version's behaviour; not ranked). If there are no findings, say so plainly — do
+not invent issues.
+
+In a repo that rewrites an earlier version (e.g. a V2 rewrite of a V1 service),
+check the earlier version's behaviour in git history before ranking a finding.
+A finding that matches it is a `note`, not a severity.
 
 ## Step 4 — Disposition
 The human decides which findings to act on, using the approval vocabulary. For
@@ -74,7 +87,8 @@ each finding accepted as a fix, proceed under the relevant skill (`sdlc:bug-fix`
 approval, apply, build gate.
 
 ## Completion
-Summarise: files reviewed, findings by severity, and which were accepted for
-fix vs deferred. If any code was changed as a result, run the `sdlc:context-update`
+Summarise: files reviewed, findings by severity (and any reported as `note`),
+which were accepted for fix vs deferred, and whether the review ran against
+the snapshot because the ticket could not be re-fetched. If any code was changed as a result, run the `sdlc:context-update`
 skill for the affected artefacts; a pure review with no code change needs no
 context update.

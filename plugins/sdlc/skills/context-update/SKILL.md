@@ -27,8 +27,8 @@ are relative to `[workspace]\`.
 - After a ticket's code work is complete and verified, before closing it out.
 
 ## Files to review and update
-Review each in order. For each: read current content, identify what this ticket
-changed, show the proposed update, wait for approval, then write. Skip a file
+Review each in order: read current content and identify what this ticket
+changed. Skip a file
 only if genuinely unaffected — state that it was reviewed and unchanged.
 
 Global:
@@ -53,8 +53,10 @@ Also update when affected (not in the mandatory walk above, but check):
 1. Confirm the ticket scope and what actually changed (files, contracts,
    dependencies, behaviour). If a ticket id was given, read
    `tasks\[ticket-id]\` if it exists.
-2. For each file above: read → identify delta → show proposed update → wait for
-   approval → write. One file at a time.
+2. For each file above: read → identify delta. Then show every proposed update
+   in one list, grouped by file, with reviewed-unchanged files named, and ask
+   for one approval of the whole set (or approval per file if the human asks).
+   Write only what is approved.
 3. Add a dated entry to `change-journal.md` for the completed ticket:
    - Ticket id and name.
    - What changed and why.

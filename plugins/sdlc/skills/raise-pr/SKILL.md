@@ -1,14 +1,15 @@
 ---
 name: raise-pr
-description: Prepare a pull request for a workspace repository on the git host named in the workspace settings (e.g. GitHub) — verify the branch and target (default or release branch), check the diff is in scope and clean, then draft the title and description from the diff, ticket and task folder (summary, changes, testing, deployment notes, risks). Creates the PR only after explicit approval. Use when a ticket's work is ready to go up for review.
+description: Prepare a pull request for a workspace repository on the git host named in the workspace settings (e.g. GitHub) — verify the branch and target (default or release branch), check the diff is in scope and clean, then draft the title and description from the diff, ticket and task folder (summary, changes, testing, deployment notes, risks). By default only drafts — the human pushes and raises the PR — unless the workspace settings' working agreement lets Claude raise PRs on approval. Use when the human asks for a PR description or to raise a PR.
 argument-hint: "[ticket-id] [target branch]"
 ---
 
 # Raise a Pull Request
 
 Get a change ready for review and describe it well. Follow every rule in
-`[workspace]\CLAUDE.md`. Pushing a branch and opening a PR are
-outward-facing — each needs explicit approval for that specific action.
+`[workspace]\CLAUDE.md`. Who pushes and creates the PR comes from the
+"Working agreement" section of `[workspace]\workspace-settings.md`. If it is
+missing or says the human does, this skill only drafts.
 
 > **Workspace.** `[workspace]` below is the workspace root named in
 > `.claude/sdlc.md`: look in the current project, then its parent folders,
@@ -84,15 +85,18 @@ Description sections:
 End the description with the attribution line required by the session.
 Present the draft and wait for approval or amendments.
 
-## Step 5 — Create (only on approval)
-On explicit approval: push the branch if not already pushed (separate approval),
-then create the PR with the settings' CLI (e.g. `gh pr create`) against the
-approved target, with the
-approved title and body. Report the PR URL. If the human prefers to create it
-themselves, write the approved description to
-`[workspace]\tasks\[ticket-id]\pr-description.md` instead.
+## Step 5 — Write the description (and create, only if agreed)
+On approval, write the approved title and description to
+`[workspace]\tasks\[ticket-id]\pr-description.md`.
+
+- Working agreement says **the human raises PRs** (the default): stop here. Do
+  not push the branch or create the PR.
+- Working agreement says **Claude raises PRs on approval**: ask separately to
+  push the branch, then separately to create the PR with the settings' CLI
+  (e.g. `gh pr create`) against the approved target with the approved title
+  and body. Report the PR URL.
 
 ## Completion summary
-- PR URL (or description file path).
+- Description file path (and PR URL if Claude created it).
 - Target branch.
 - Checklist items still open.

@@ -3,6 +3,24 @@
 Workplace-specific values read by the workspace skills. Skills stay generic and
 take their tracker, git, environment, hosting and security details from here.
 
+## Working agreement
+Who does what. Skills read this before any git, PR, build or tracker action;
+the defaults in brackets are what applies when a line is left out.
+- Branches: [the human creates them; Claude names the branch, waits, verifies]
+  / Claude creates them on approval.
+- Commits: [the human commits everything; Claude lists changed files and a
+  suggested message] / Claude commits on approval.
+- Pushes and pull requests: [the human pushes and raises every PR;
+  `sdlc:raise-pr` only drafts `pr-description.md`] / Claude pushes and raises
+  PRs on approval, each as a separate approval.
+- Builds, tests and manual / environment cases: [the human runs them; Claude
+  plans, diagnoses and records results].
+- Browser for tickets and dashboards: [the desktop app's built-in browser].
+- Tracker comments: [brief — one ✅/❌ line per area, the key cause, questions;
+  no tables].
+- Code comments: [only essential ones; edits made in place, no draft code
+  printed in the terminal].
+
 ## Issue tracker
 - Tracker: [Jira / Linear / GitHub Issues / …]
 - Site: `[https://your-site.example]`

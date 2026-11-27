@@ -1,6 +1,6 @@
 ---
 name: skill-retro
-description: Periodic retrospective that turns lessons learnt into reviewed changes to the sdlc plugin skills (in the plugin repo named in .claude/sdlc.md) and any project skills the workspace adds — read the skill-feedback inbox, memories and recent ai-context changes, group lessons by skill, find conflicts between skills, CLAUDE.md and memory, propose edits for approval, apply them, close the inbox entries and prepare a commit. Use for the weekly skill retro, when the human asks to update skills from feedback, or when several feedback entries are open for one skill.
+description: Periodic retrospective that turns lessons learnt into reviewed changes to the sdlc plugin skills (in the plugin repo named in .claude/sdlc.md) and any project skills the workspace adds — read the skill-feedback inbox, memories and recent ai-context changes, group lessons by skill, find conflicts between skills, CLAUDE.md and memory, propose edits for approval, apply them, close the inbox entries and list the changed files with a suggested commit message (committing only if the working agreement allows). Use for the weekly skill retro, when the human asks to update skills from feedback, or when several feedback entries are open for one skill.
 argument-hint: "[since date]"
 ---
 
@@ -21,7 +21,8 @@ vocabulary, one change at a time). Best run in `Mode: analysis`.
 2. Read `[workspace]\skill-feedback.md` (open entries).
 3. Read the memory index and memory files, and `CLAUDE.md`'s Skill library.
 4. Note the date of the last retro (latest `applied` / `rejected` date in the
-   inbox, or the last skills commit) — the review covers everything since.
+   inbox; `.claude\skills\` is not tracked in git) — the review covers
+   everything since.
 
 ## Inputs required from the human
 - Review window, if not "since the last retro".
@@ -32,9 +33,9 @@ Collect candidate lessons from:
 - Open inbox entries.
 - Memories written or changed since the last retro that describe how a workflow
   should run (these are often skill changes recorded in the wrong place).
-- `ai-context` changes since the last retro (`git log` on
-  `[workspace]\ai-context`) that contradict a skill's paths, commands
-  or steps.
+- `ai-context` changes since the last retro (`git log` plus `git status` /
+  `git diff` on `[workspace]\ai-context` — most context changes are
+  left uncommitted) that contradict a skill's paths, commands or steps.
 - If the session-transcript search tool is available and the human agrees:
   recent sessions where the human corrected how a skill ran.
 
@@ -94,12 +95,16 @@ skill still triggers and behaves as intended.
   Commit message `Skill retro [date]: [skills changed]`, one line per lesson.
 - Project skills the workspace adds (outside the plugin) are committed in their
   own repo; `skill-feedback.md` stays in the workspace.
-- The human confirms the branch; nothing is pushed without approval. After a
-  push, remind the human to update the plugin (`/plugin` → marketplace update).
+- List the changed files and the suggested message. If the settings' working
+  agreement says the human commits (the default), do not commit or offer to.
+  If it lets Claude commit on approval, ask, then commit; nothing is pushed
+  without separate approval. After a push, remind the human to update the
+  plugin (`/plugin` → marketplace update).
 
 ## Completion summary
 - Lessons reviewed, by decision.
 - Skills changed and what changed.
 - Conflicts resolved.
 - Entries deferred and why.
-- Commit status.
+- Changed files and suggested commit message (and commit status, if Claude
+  committed).

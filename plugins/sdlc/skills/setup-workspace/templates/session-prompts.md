@@ -158,14 +158,14 @@ Snapshot the ticket (Step 0), then restate the ACs (Step 1) and wait for my
 approval.
 ```
 
-### 15. Raise a pull request
+### 15. Draft a pull request description
 ```
 Repo: [repo-name]
 Mode: implementation
 Task: Ticket [TICKET-ID] is ready for review. Target: [main / release/x.y.z].
 Skill: sdlc:raise-pr
-Run the branch and scope checks, then draft the description. Do not push or
-create the PR until I approve.
+Run the branch and scope checks, then draft the description. I push and raise
+the PR myself.
 ```
 
 ### 16. Prepare a release
@@ -250,11 +250,30 @@ Skill: sdlc:skill-retro
 Gather and triage first (Steps 1–2); wait for my approval before proposing edits.
 ```
 
+### 24. Verify a ticket in an environment
+```
+Repo: multiple
+Mode: analysis
+Task: Verify [TICKET-ID] in [SIT]. Deployed: [PRs / release branch].
+Skill: sdlc:env-verification
+Ticket: [TICKET-ID]
+I run the cases; give expected results and record what I report.
+```
+
+### 25. Config-only change
+```
+Repo: [repo-name]
+Mode: implementation
+Task: Change [setting(s)] to [value per environment]. Ticket: [TICKET-ID].
+Skill: sdlc:config-change
+Produce the value inventory first. I run all pipelines.
+```
+
 ## Typical ticket flow
 `sdlc:ticket-analysis` → build skill (`sdlc:new-feature`,
-`sdlc:bug-fix`, …) →
-`sdlc:code-review` / `sdlc:security-review` → `sdlc:context-update` → `sdlc:raise-pr` →
-`sdlc:release`. Use `sdlc:handover` whenever a session ends mid-ticket.
+`sdlc:bug-fix`, `sdlc:config-change`, …) →
+`sdlc:code-review` / `sdlc:security-review` → `sdlc:context-update` → human raises the PR →
+`sdlc:release` → `sdlc:env-verification`. Use `sdlc:handover` whenever a session ends mid-ticket.
 
 ## Tips
 - Mode defaults to `implementation` if omitted — state `Mode: analysis` for full

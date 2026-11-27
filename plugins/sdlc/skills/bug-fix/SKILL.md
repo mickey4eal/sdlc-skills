@@ -40,12 +40,19 @@ exact steps and the observed failure.
 | Repro step | Expected | Actual |
 |---|---|---|
 
-If the defect cannot be reproduced, stop. Report what was tried and the
-information still needed. Do not guess at a fix against an unreproduced defect.
+If a local reproduction needs a deployed environment or other costly setup
+(e.g. role switching), but the defect is clear from the code, propose a failing
+regression test as the repro instead. Describe it and wait for approval. That
+test is then the one written in Step 5, and the environment check moves to
+Step 7. Otherwise, if the defect cannot be reproduced, stop. Report what was
+tried and the information still needed. Do not guess at a fix against an
+unreproduced defect.
 
 ## Step 2 — Locate and isolate
 Narrow the failure to the responsible code path. Read the code first; do not
-hypothesise from names. Record the call path from entry point to failure.
+hypothesise from names. Before stating what a caller sends or what a path does,
+trace every branch that builds it (each mode, option and default), not only the
+first one read. Record the call path from entry point to failure.
 
 | Layer / file | Role in the path | Observation |
 |---|---|---|
@@ -63,7 +70,10 @@ the root cause before designing the fix.
 ## Step 4 — Fix design (minimal blast radius)
 Propose the smallest change that corrects the root cause. State the change, the
 files touched, and why nothing wider is needed. Call out any behaviour that
-callers currently depend on and confirm the fix preserves it. Wait for approval.
+callers currently depend on and confirm the fix preserves it. For filter, flag
+or selection changes, add a behaviour table of inputs (all, none, a subset,
+defaults) against current and expected results, checked against the acceptance
+criteria. Wait for approval.
 
 | Change | File | Why minimal | Contract preserved? |
 |---|---|---|---|
@@ -83,7 +93,9 @@ Interpret the output; fix any failure (propose → approve → apply) before
 continuing.
 
 ## Step 7 — Verify
-- Human re-runs the Step 1 repro: the defect no longer occurs.
+- Human re-runs the Step 1 repro: the defect no longer occurs. Where Step 1
+  used a test as the repro, the human runs the agreed environment check
+  instead.
 - Human runs the Step 5 regression test: it now passes.
 - Human runs the surrounding test suite: no new regressions.
 - Search for the same faulty pattern elsewhere. Report the search terms and
@@ -101,4 +113,6 @@ continuing.
 - Other occurrences found and where recorded.
 
 Then run the `sdlc:context-update` skill to refresh
-`known-issues.md`, `change-journal.md`, and any affected context files.
+`known-issues.md`, `change-journal.md`, and any affected context files. Before a
+deploy or the human's PR, suggest the `sdlc:code-review` skill if the change has
+not been reviewed.

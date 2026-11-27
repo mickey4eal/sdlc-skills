@@ -18,7 +18,7 @@ workspace.
 plugins/sdlc/
   .claude-plugin/plugin.json      # plugin manifest (version lives here)
   README.md  CONNECTORS.md  CHANGELOG.md
-  skills/<skill>/SKILL.md         # 26 skills
+  skills/<skill>/SKILL.md         # 28 skills
   skills/setup-workspace/templates/
 ```
 

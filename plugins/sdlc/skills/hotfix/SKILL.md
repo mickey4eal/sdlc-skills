@@ -65,8 +65,10 @@ minimum that resolves the production impact; anything broader is recorded under
 | Rollback method (previous artefact / revert) | |
 
 ## Step 4 — PR
-Run the `sdlc:raise-pr` skill targeting the deployed base branch, with "HOTFIX" in
-the title and the Step 3 plan in the deployment notes.
+Say the branch is ready for a PR to the deployed base branch. Give the title
+(with "HOTFIX") and the Step 3 plan as deployment notes for its description.
+If the settings' working agreement lets Claude raise PRs, offer `sdlc:raise-pr`
+for it; otherwise the human raises it.
 
 ## Step 5 — Merge back
 After production verification, list every branch that needs the fix: the default

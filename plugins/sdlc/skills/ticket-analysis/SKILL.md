@@ -44,9 +44,10 @@ at the first that works:
    description, acceptance criteria (field or section), comments, linked issues,
    sub-tasks, attachment names. If the connector needs authentication, say so
    and move on — the human authorises it as the settings describe.
-2. **Claude in Chrome** — the human's signed-in Chrome. Load the
-   `anthropic-skills:chrome-browser` skill first, open the ticket URL in a new
-   tab, and read the page text. Expand collapsed comments if needed; note
+2. **Browser** — the built-in browser (load the
+   `anthropic-skills:built-in-browser` skill first). Open the ticket URL in a
+   new tab and read the page text. If it shows a sign-in page, ask the human to
+   sign in there and wait. Expand collapsed comments if needed; note
    anything that could not be read.
 3. **Ask the human** to paste the description, acceptance criteria and relevant
    comments.
@@ -85,7 +86,10 @@ on it.
 Identify the repos and areas involved. Read each repo's `bootstrap.md` and the
 relevant context files; then read the code paths the ticket touches. For any
 change that crosses a contract (API, client library, message, database, search
-index), run the `sdlc:impact-analysis` skill and include its result.
+index), run the `sdlc:impact-analysis` skill and include its result. When the
+ticket switches a data store (database, storage account, queue), list every
+app that reads or writes that store, per environment, and carry any
+environment difference into Step 3.
 
 | Repo | Area / files | Nature of change | Context files consulted |
 |---|---|---|---|
@@ -103,7 +107,7 @@ needs, and anything recorded under the repos' "Open observations" or
 ## Step 4 — Plan
 Break the work into phases or steps, each mapped to the workspace skill that
 will execute it (`sdlc:new-feature`, `sdlc:bug-fix`, `sdlc:migrate-endpoint`,
-…, or a project skill the workspace adds, e.g. for database or contract
+`sdlc:config-change`, …, or a project skill the workspace adds, e.g. for database or contract
 changes). Give a rough size per step (S / M / L) and state what
 the size assumes.
 

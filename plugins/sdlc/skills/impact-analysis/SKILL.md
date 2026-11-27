@@ -60,6 +60,15 @@ found:
 
 Read each consumer's usage before classifying it — a name match is not a use.
 
+**Writers.** When the change fills, backfills, defaults or re-derives a value
+(a new column, a migrated field, a setting that switches store), also list
+every writer of that value — APIs, workers, imports, scheduled jobs, manual
+scripts, other repos — per environment. A writer that keeps writing the old
+shape after the change is a breaking item.
+
+| # | Writer (repo / system) | Where | Writes which item | Environments |
+|---|---|---|---|---|
+
 ## Step 3 — Classify each change
 
 | Item | Change | Classification | Affected consumers | Why |

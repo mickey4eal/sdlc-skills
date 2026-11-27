@@ -56,8 +56,15 @@ Create the target folders/projects/registration shells before moving any logic.
 Describe before writing. Wait for approval.
 
 ## Step 5 — Move logic one unit at a time
-Move one feature / module / class at a time. After each move:
-- Update references and registrations for that unit only.
+Move one feature / module / class at a time. An approval covers only the plan
+step and the repos or units it names. When those are done, stop and propose the
+next step, even if its change is identical. After each move:
+- Update references and registrations for that unit only. After renaming or
+  removing a member, search for the member's own name across the repo,
+  including other partial files of the same class.
+- If the branch moves to a newer base, list the base's commits that touch the
+  changed files (`git log <old-base>..<new-base> -- <files>`) and check each
+  one's changes survived and still hold before the next build gate.
 - Human runs the build (build gate). Interpret the output. Fix before the next
   unit. Do not batch moves.
 

@@ -69,8 +69,9 @@ Read by the sdlc plugin skills to resolve [workspace].
 ```
 
 ## Step 4 — Fill in workspace-settings.md
-Walk the human through `workspace-settings.md` one section at a time (issue
-tracker, source control, environments and releases, hosting and observability,
+Walk the human through `workspace-settings.md` one section at a time (working
+agreement first — offer each line's bracketed default or the alternative —
+then issue tracker, source control, environments and releases, hosting and observability,
 security stack, consumer paths, performance tooling). Offer values found on the
 machine (e.g. `gh auth status`, git remotes, project files) as suggestions, ask
 for the rest, and leave an explicit `[unknown]` rather than guessing. Show each

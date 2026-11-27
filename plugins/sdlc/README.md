@@ -1,6 +1,6 @@
 # sdlc — gated SDLC workflows for Claude Code
 
-A Claude Code plugin of 26 skills that run engineering work through a fixed,
+A Claude Code plugin of 28 skills that run engineering work through a fixed,
 approval-gated workflow: understand the repo first, propose before writing, one
 step at a time, the human runs builds and tests, and context docs are kept up
 to date after every ticket.
@@ -60,11 +60,13 @@ offer to run `/sdlc:setup-workspace` if none is found.
 | | `nuget-update` | Package updates, one per build gate |
 | | `remove-package` | Replace and remove a dependency |
 | | `test-authoring` | Tests around existing code |
+| | `config-change` | Config-only change: per-environment values, deploy route, rollback by value |
 | Review | `code-review` | Read-only review with ranked findings |
 | | `security-review` | Read-only security review |
 | | `perf-investigation` | Measurement-first performance fix |
-| Delivery | `raise-pr` | Scope checks and PR description; creates on approval |
+| Delivery | `raise-pr` | Scope checks and PR description; creates it only if the working agreement allows |
 | | `release` | Release notes, deployment order, checklist |
+| | `env-verification` | Verify a delivered ticket in an environment; human runs the cases |
 | | `incident-triage` | Read-only evidence, severity and decision |
 | | `handover` | Handoff document for a fresh session |
 | Improvement | `skill-retro` | Apply reviewed lessons from the feedback inbox |
@@ -75,7 +77,8 @@ offer to run `/sdlc:setup-workspace` if none is found.
 - Approval vocabulary (`Approved. Proceed.`, `Not approved. … Revise.`, …).
 - One step at a time; nothing is written before approval.
 - The human runs builds and tests and pastes the output.
-- Branch creation follows `workspace-settings.md` ("Who creates branches").
+- Branches, commits, pushes and PRs follow the "Working agreement" in
+  `workspace-settings.md`; by default the human does all four.
 
 See [CONNECTORS.md](CONNECTORS.md) for tracker and git host access, and
 [CHANGELOG.md](CHANGELOG.md) for versions.
