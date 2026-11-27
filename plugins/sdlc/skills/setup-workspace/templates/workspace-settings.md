@@ -15,6 +15,8 @@ the defaults in brackets are what applies when a line is left out.
   PRs on approval, each as a separate approval.
 - Builds, tests and manual / environment cases: [the human runs them; Claude
   plans, diagnoses and records results].
+- Telemetry and log queries: [Claude runs read-only queries when the session
+  is signed in] / the human runs them and pastes the results.
 - Browser for tickets and dashboards: [the desktop app's built-in browser].
 - Tracker comments: [brief — one ✅/❌ line per area, the key cause, questions;
   no tables].
@@ -53,6 +55,9 @@ the defaults in brackets are what applies when a line is left out.
 - Hosting: [platform and plans; pointer to a hosting reference file].
 - Messaging: [broker, topics, dead-letter handling].
 - Telemetry and errors: [APM / logging / error tracking tools].
+- Telemetry access (read by `sdlc:telemetry-query`): [per environment — the
+  resource and its id, the query route or CLI, how to sign in, sampling rates
+  per service, retention, the unsampled metrics fallback].
 - Data stores: [databases, search, storage].
 - Known incident hazards: [recurring causes worth checking first].
 

@@ -269,6 +269,17 @@ Skill: sdlc:config-change
 Produce the value inventory first. I run all pipelines.
 ```
 
+### 26. Investigate logs / telemetry
+```
+Repo: [repo-name or "multiple"]
+Mode: analysis
+Task: In [environment], [what happened] around [time + time zone]. Ids:
+[operation id / entity id / route].
+Skill: sdlc:telemetry-query
+Ticket: [TICKET-ID]
+Frame the question and check coverage and sampling first; read-only.
+```
+
 ## Typical ticket flow
 `sdlc:ticket-analysis` → build skill (`sdlc:new-feature`,
 `sdlc:bug-fix`, `sdlc:config-change`, …) →

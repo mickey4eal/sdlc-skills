@@ -3,6 +3,17 @@
 Semantic versions. Patch: wording or trigger fixes. Minor: a new step or skill.
 Major: a renamed skill or a changed workspace layout.
 
+## 0.3.0 — 2026-11-27
+- New skill: `telemetry-query` — read-only telemetry/log investigation for a
+  deployed environment (coverage and sampling check, failing operation end to
+  end, KQL starting points, unsampled metrics fallback, evidence timeline).
+- `bug-fix` Step 1 runs it for defects seen in an environment and Step 7
+  re-checks after deploy; `incident-triage` Step 2 and `perf-investigation`
+  Step 1 use it for telemetry evidence and baselines.
+- `workspace-settings.md` template: "Telemetry and log queries" working-agreement
+  line and "Telemetry access" under Hosting and observability.
+- CLAUDE.md template, session prompt 26, README and CONNECTORS list the skill.
+
 ## 0.2.0 — 2026-11-27
 - New skills: `config-change` (config-only changes, environments from the
   settings) and `env-verification` (manual verification of a delivered ticket).

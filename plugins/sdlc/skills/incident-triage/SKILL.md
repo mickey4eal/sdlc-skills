@@ -58,6 +58,10 @@ function host logs, telemetry exceptions and dependency calls, error tracking,
 message dead-letter queues, database errors and blocking, pipeline history,
 secret store / identity / role-assignment changes.
 
+For telemetry and logs, run the `sdlc:telemetry-query` skill (coverage and
+sampling check, failing-operation timeline) and record its evidence summary
+here.
+
 ## Step 3 — Hypotheses
 
 | Hypothesis | Supporting evidence | Contradicting evidence | How to confirm |

@@ -39,7 +39,9 @@ Agree how to measure and record the baseline. No change is evaluated without it.
 
 Give the human the exact measurement to take with the settings' tooling (for
 example a telemetry query, database statistics plus the actual execution plan,
-or a browser performance trace).
+or a browser performance trace). For telemetry baselines (percentiles,
+dependency durations), run the `sdlc:telemetry-query` skill; where telemetry is
+sampled, take counts from unsampled metrics.
 
 ## Step 2 — Locate the time
 Trace the path from entry point to data store; read the code. Attribute time to

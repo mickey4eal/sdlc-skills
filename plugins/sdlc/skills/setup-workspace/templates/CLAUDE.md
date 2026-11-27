@@ -132,7 +132,8 @@ Each repo's `bootstrap.md` lists only the skills specific to that repo under
 `sdlc:ticket-analysis`, `sdlc:impact-analysis`, `sdlc:code-review`,
 `sdlc:security-review`, `sdlc:test-authoring`, `sdlc:bug-fix`, `sdlc:spike`,
 `sdlc:raise-pr`, `sdlc:release`, `sdlc:hotfix`, `sdlc:incident-triage`,
-`sdlc:adr`, `sdlc:handover`, `sdlc:env-verification`, `sdlc:config-change` —
+`sdlc:adr`, `sdlc:handover`, `sdlc:env-verification`, `sdlc:config-change`,
+`sdlc:telemetry-query` —
 apply to every repo and are not repeated there.
 
 Current skills:
@@ -183,6 +184,9 @@ Current skills:
 - `sdlc:security-review` — read-only security review against the platform's real
   risks.
 - `sdlc:perf-investigation` — measurement-first performance fix.
+- `sdlc:telemetry-query` — read-only telemetry and log investigation for a
+  deployed environment: coverage and sampling check, one operation end to end,
+  evidence timeline for the calling skill.
 - `sdlc:handover` — session or ticket handoff document for a fresh session or
   colleague.
 - `sdlc:skill-retro` — periodic retro that applies approved lessons from

@@ -68,6 +68,7 @@ offer to run `/sdlc:setup-workspace` if none is found.
 | | `release` | Release notes, deployment order, checklist |
 | | `env-verification` | Verify a delivered ticket in an environment; human runs the cases |
 | | `incident-triage` | Read-only evidence, severity and decision |
+| | `telemetry-query` | Read-only telemetry/log investigation; evidence timeline for the calling skill |
 | | `handover` | Handoff document for a fresh session |
 | Improvement | `skill-retro` | Apply reviewed lessons from the feedback inbox |
 

@@ -34,6 +34,11 @@ adds functionality, stop and use the `sdlc:new-feature` or `sdlc:migrate-endpoin
 Ask for any that are missing before Step 1.
 
 ## Step 1 — Reproduce
+If the defect was seen in a deployed environment, first run the
+`sdlc:telemetry-query` skill to gather the failing operation's evidence
+(requests, dependencies, exceptions, traces). Its timeline shapes the repro
+below and feeds the Step 2 call path.
+
 Establish a reliable, local reproduction before proposing any cause. State the
 exact steps and the observed failure.
 
@@ -98,6 +103,9 @@ continuing.
   instead.
 - Human runs the Step 5 regression test: it now passes.
 - Human runs the surrounding test suite: no new regressions.
+- Once deployed, where Step 1 used telemetry: re-run the relevant
+  `sdlc:telemetry-query` failure query for a window after the deploy to confirm
+  the error no longer occurs (allowing for sampling).
 - Search for the same faulty pattern elsewhere. Report the search terms and
   results; record any other occurrences under "Observations for later" (fix them
   only if explicitly approved as in-scope).
